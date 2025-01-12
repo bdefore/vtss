@@ -1,0 +1,15 @@
+---
+import Link from '@components/Link.astro'
+import { SITE, SOCIALS } from '@consts'
+---
+
+<ul class="flex flex-wrap gap-2">
+  {SOCIALS.map((SOCIAL, idx) => (
+    <li class="flex gap-x-2 text-nowrap">
+      <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
+        {SOCIAL.NAME}
+      </Link>
+      {idx < SOCIALS.length - 1 && '/'}
+    </li>
+  ))}
+</ul>

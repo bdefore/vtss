@@ -1,32 +1,38 @@
 ---
-import Container from "@components/Container.astro";
-import Link from "@components/Link.astro";
-import { SITE } from "@consts";
+import Container from '@components/Container.astro'
+import Link from '@components/Link.astro'
+// import { SITE } from '@consts';
 ---
 
 <header>
   <Container>
     <div class="flex flex-wrap gap-y-2 justify-between">
-      <Link href="/" underline={false}>
-        <div class="font-semibold">
-          {SITE.NAME}
-        </div>
+      <Link href="/" class="header-logo" underline={false}>
+      <!-- <div class="font-semibold">
+        {SITE.NAME}
+      </div> -->
+      <div class="flex justify-between header-logo">
+        <img src="/vtss-knob.svg" class="inverted first-knob" />
+        <img src="/vtss-knob.svg" class="inverted second-knob" />
+        <img src="/vtss-knob.svg" class="inverted third-knob" />
+      </div>
       </Link>
       <nav class="flex gap-1">
-        <Link href="/blog">
-          blog
+        <Link href="/events">
+          Calendar
         </Link>
         <span>
           {`/`}
         </span>
-        <Link href="/work">
-          work
+        <!-- TODO: write some blog posts and reenable -->
+        <!-- <Link href="/blog">
+          Resources
         </Link>
         <span>
           {`/`}
-        </span>
-        <Link href="/projects">
-          projects
+        </span> -->
+        <Link href="/about">
+          About
         </Link>
       </nav>
     </div>

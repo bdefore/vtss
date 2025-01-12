@@ -1,8 +1,14 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry } from 'astro:content'
+import { format } from 'date-fns'
 
 type Props = {
-  entry: CollectionEntry<"blog"> | CollectionEntry<"projects">;
+  entry:
+    CollectionEntry<'blog'> |
+    CollectionEntry<'events'> |
+    CollectionEntry<'shows'> |
+    CollectionEntry<'meetups'> |
+    CollectionEntry<'about'>;
 }
 
 const { entry } = Astro.props;
@@ -14,7 +20,7 @@ const { entry } = Astro.props;
       {entry.data.title}
     </div>
     <div class="text-sm">
-      {entry.data.description}
+      {entry.data.start ? `${format(entry.data.start, 'MMM do')}:` : ''} {entry.data.description}
     </div>
   </div>
   <svg 

@@ -13,10 +13,22 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# dotenvx
+.env.keys
 
-# environment variables
-.env
-.env.production
+# ALLOWED WITH DOTENVX: environment variables
+#.env
+#.env.production
 
 # macOS-specific files
 .DS_Store
+
+.netlify
+
+# google calendar related
+credentials.json
+token.json
+
+# exclude events generated from gcal import
+src/content/meetups
+src/content/shows

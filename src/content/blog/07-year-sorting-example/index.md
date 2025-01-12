@@ -1,6 +1,6 @@
 ---
 title: "Year sorting example"
-description: "Nano groups posts by year."
+description: "How to group posts by year."
 date: "12/31/2023"
 ---
 

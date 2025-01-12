@@ -1,44 +1,54 @@
-import type { Site, Metadata, Socials } from "@types";
+import type { Site, Metadata, Socials } from '@types'
 
 export const SITE: Site = {
-  NAME: "Astro Nano",
-  EMAIL: "markhorn.dev@gmail.com",
+  NAME: 'VTSS',
   NUM_POSTS_ON_HOMEPAGE: 3,
-  NUM_WORKS_ON_HOMEPAGE: 2,
-  NUM_PROJECTS_ON_HOMEPAGE: 3,
-};
+  NUM_EVENTS_ON_HOMEPAGE: 3,
+}
 
 export const HOME: Metadata = {
-  TITLE: "Home",
-  DESCRIPTION: "Astro Nano is a minimal and lightweight blog and portfolio.",
-};
+  TITLE: 'Home',
+  DESCRIPTION: 'Vermont Synthesizer Society',
+}
+
+export const ABOUT: Metadata = {
+  TITLE: 'About',
+  DESCRIPTION: 'Who is the Vermont Synth Society?'
+}
 
 export const BLOG: Metadata = {
-  TITLE: "Blog",
-  DESCRIPTION: "A collection of articles on topics I am passionate about.",
-};
+  TITLE: 'Resources',
+  DESCRIPTION: 'A collection of articles on topics related to synthesizers.',
+}
 
-export const WORK: Metadata = {
-  TITLE: "Work",
-  DESCRIPTION: "Where I have worked and what I have done.",
-};
-
-export const PROJECTS: Metadata = {
-  TITLE: "Projects",
-  DESCRIPTION: "A collection of my projects, with links to repositories and demos.",
-};
+export const EVENTS: Metadata = {
+  TITLE: 'Events',
+  DESCRIPTION: 'Events that we\'ve put on.',
+}
 
 export const SOCIALS: Socials = [
-  { 
-    NAME: "twitter-x",
-    HREF: "https://twitter.com/markhorn_dev",
+  {
+    NAME: 'discord',
+    HREF: 'https://discord.gg/NJxqtDTkxa',
   },
   { 
-    NAME: "github",
-    HREF: "https://github.com/markhorn-dev"
+    NAME: 'youtube',
+    HREF: 'https://www.youtube.com/channel/UC_u175Z58JY0ytndAcuLAjg',
   },
-  { 
-    NAME: "linkedin",
-    HREF: "https://www.linkedin.com/in/markhorn-dev",
-  }
-];
+  {
+    NAME: 'facebook',
+    HREF: 'https://www.facebook.com/groups/vtsynthsociety/about/',
+  },
+  // {
+  //   NAME: 'twitter',
+  //   HREF: 'https://twitter.com/tbd-vtss',
+  // },
+  // { 
+  //   NAME: "github",
+  //   HREF: "https://github.com/tbd-vtss"
+  // }
+  // { 
+  //   NAME: "linkedin",
+  //   HREF: "https://www.linkedin.com/in/markhorn-dev",
+  // }
+]

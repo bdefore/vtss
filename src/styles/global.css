@@ -57,7 +57,7 @@ article {
 
 .animate {
   @apply opacity-0 translate-y-3;
-  @apply transition-all duration-700 ease-out;
+  @apply transition-all duration-200 ease-out;
 }
 
 .animate.show {
@@ -71,3 +71,24 @@ html #back-to-top {
 html.scrolled #back-to-top {
   @apply opacity-100 pointer-events-auto;
 }
+
+.inverted {
+  filter: invert();
+}
+
+.header-logo {
+  width: 24px;
+}
+
+.first-knob {
+  margin-bottom: 2px;
+}
+
+.second-knob {
+  rotate: 270deg;
+}
+
+.third-knob {
+  rotate: 310deg;
+}
+

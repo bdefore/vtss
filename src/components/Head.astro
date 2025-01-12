@@ -1,24 +1,24 @@
 ---
-import "../styles/global.css";
-import "@fontsource/inter/latin-400.css";
-import "@fontsource/inter/latin-600.css";
-import "@fontsource/lora/400.css";
-import "@fontsource/lora/600.css";
-import inter400 from "@fontsource/inter/files/inter-latin-400-normal.woff2";
-import inter600 from "@fontsource/inter/files/inter-latin-600-normal.woff2";
-import lora400 from "@fontsource/lora/files/lora-latin-400-normal.woff2";
-import lora600 from "@fontsource/lora/files/lora-latin-600-normal.woff2";
-import { ViewTransitions } from "astro:transitions";
+import '../styles/global.css'
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-600.css'
+import '@fontsource/lora/400.css'
+import '@fontsource/lora/600.css'
+import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2'
+import inter600 from '@fontsource/inter/files/inter-latin-600-normal.woff2'
+import lora400 from '@fontsource/lora/files/lora-latin-400-normal.woff2'
+import lora600 from '@fontsource/lora/files/lora-latin-600-normal.woff2'
+import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = "/nano.png" } = Astro.props;
+const { title, description, image = '/vtss-logo.png' } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -60,85 +60,92 @@ const { title, description, image = "/nano.png" } = Astro.props;
 <ViewTransitions  />
 
 <script>
-  import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
-  document.addEventListener("astro:before-swap", (e) =>
+  import type { TransitionBeforeSwapEvent } from 'astro:transitions/client'
+document.addEventListener('astro:before-swap', (e) =>
     [
       ...(e as TransitionBeforeSwapEvent).newDocument.head.querySelectorAll(
-        "link[as=\"font\"]"
+        'link[as="font"]'
       ),
     ].forEach((link) => link.remove())
-  );
+  )
 </script>
 
 <script is:inline>
   function init() {
-    preloadTheme();
-    onScroll();
-    animate();
+    preloadTheme()
+    onScroll()
+    animate()
 
-    const backToTop = document.getElementById("back-to-top");
-    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+    // default to dark mode
+    const themeOverride = localStorage.getItem('theme')
+    const hasOverride = !!themeOverride
+    if (!hasOverride || themeOverride == 'dark') {
+      toggleTheme(true)
+    }
 
-    const backToPrev = document.getElementById("back-to-prev");
-    backToPrev?.addEventListener("click", () => window.history.back());
+    const backToTop = document.getElementById('back-to-top')
+    backToTop?.addEventListener('click', (event) => scrollToTop(event))
 
-    const lightThemeButton = document.getElementById("light-theme-button");
-    lightThemeButton?.addEventListener("click", () => {
-      localStorage.setItem("theme", "light");
-      toggleTheme(false);
-    });
+    const backToPrev = document.getElementById('back-to-prev')
+    backToPrev?.addEventListener('click', () => window.history.back())
 
-    const darkThemeButton = document.getElementById("dark-theme-button");
-    darkThemeButton?.addEventListener("click", () => {
-      localStorage.setItem("theme", "dark");
-      toggleTheme(true);
-    });
+    const lightThemeButton = document.getElementById('light-theme-button')
+    lightThemeButton?.addEventListener('click', () => {
+      localStorage.setItem('theme', 'light')
+      toggleTheme(false)
+    })
 
-    const systemThemeButton = document.getElementById("system-theme-button");
-    systemThemeButton?.addEventListener("click", () => {
-      localStorage.setItem("theme", "system");
-      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    });
+    const darkThemeButton = document.getElementById('dark-theme-button')
+    darkThemeButton?.addEventListener('click', () => {
+      localStorage.setItem('theme', 'dark')
+      toggleTheme(true)
+    })
 
-    window.matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", event => {
-        if (localStorage.theme === "system") {
-          toggleTheme(event.matches);
+    const systemThemeButton = document.getElementById('system-theme-button')
+    systemThemeButton?.addEventListener('click', () => {
+      localStorage.setItem('theme', 'system')
+      toggleTheme(window.matchMedia('(prefers-color-scheme: dark)').matches)
+    })
+
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', event => {
+        if (localStorage.theme === 'system') {
+          toggleTheme(event.matches)
         }
       }
-    );
+    )
 
-    document.addEventListener("scroll", onScroll);
+    document.addEventListener('scroll', onScroll)
   }
 
   function animate() {
-    const animateElements = document.querySelectorAll(".animate");
+    const animateElements = document.querySelectorAll('.animate')
 
     animateElements.forEach((element, index) => {
       setTimeout(() => {
-        element.classList.add("show");
-      }, index * 150);
-    });
+        element.classList.add('show')
+      }, index * 150)
+    })
   }
 
   function onScroll() {
     if (window.scrollY > 0) {
-      document.documentElement.classList.add("scrolled");
+      document.documentElement.classList.add('scrolled')
     } else {
-      document.documentElement.classList.remove("scrolled");
+      document.documentElement.classList.remove('scrolled')
     }
   }
 
   function scrollToTop(event) {
-    event.preventDefault();
+    event.preventDefault()
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
-    });
+      behavior: 'smooth'
+    })
   }
 
 function toggleTheme(dark) {
-    const css = document.createElement("style");
+    const css = document.createElement('style')
 
     css.appendChild(
       document.createTextNode(
@@ -151,31 +158,31 @@ function toggleTheme(dark) {
           }
         `,
       )
-    );
+    )
 
-    document.head.appendChild(css);
+    document.head.appendChild(css)
 
     if (dark) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark')
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark')
     }
 
-  window.getComputedStyle(css).opacity;
-    document.head.removeChild(css);
+  window.getComputedStyle(css).opacity
+    document.head.removeChild(css)
   }
 
   function preloadTheme() {
-    const userTheme = localStorage.theme;
+    const userTheme = localStorage.theme
 
-    if (userTheme === "light" || userTheme === "dark") {
-      toggleTheme(userTheme === "dark");
+    if (userTheme === 'light' || userTheme === 'dark') {
+      toggleTheme(userTheme === 'dark')
     } else {
-      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+      toggleTheme(window.matchMedia('(prefers-color-scheme: dark)').matches)
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => init());
-  document.addEventListener("astro:after-swap", () => init());
-  preloadTheme();
+  document.addEventListener('DOMContentLoaded', () => init())
+  document.addEventListener('astro:after-swap', () => init())
+  preloadTheme()
 </script>

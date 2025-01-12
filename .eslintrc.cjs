@@ -14,8 +14,8 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    semi: ["error", "always"],
-    quotes: ["error", "double", { "allowTemplateLiterals": true }],
+    semi: ["error", "never"],
+    quotes: ["error", "single", { "allowTemplateLiterals": true }],
     "@typescript-eslint/triple-slash-reference": "off",
   },
   overrides: [
