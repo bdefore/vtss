@@ -10,7 +10,7 @@ import { YouTube } from 'astro-embed'
 export async function getStaticPaths() {
   const coll = (await getCollection('shows'))
   // .filter(post => !post.data.draft)
-  .sort((a, b) => new Date(b.data.start).valueOf() - new Date(a.data.start).valueOf())
+  .sort((a, b) => b.data.start.valueOf() - a.data.start.valueOf())
 
   return coll.map((m) => ({
     params: { slug: m.slug },
