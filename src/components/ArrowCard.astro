@@ -24,7 +24,7 @@ const { entry } = Astro.props;
       <!-- Date {entry.data.start} -->
       {entry.data.start &&
         <>
-          <FormattedDate date={entry.data.start} showClock={false} />
+          <FormattedDate date={entry.data.start} />
           :
         </>
       }

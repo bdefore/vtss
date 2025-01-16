@@ -12,7 +12,7 @@ const endDateObj = endDate instanceof Date ? endDate : !!endDate ? new Date(endD
 const lang = 'en-US'
 const timeZone = 'America/New_York'
 
-const dayFormatter = (useClock:boolean = true) =>
+const dayFormatter = (useClock:boolean = false) =>
   new Intl.DateTimeFormat(lang, {
     year: 'numeric',
     month: 'long',
