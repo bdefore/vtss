@@ -10,7 +10,7 @@ import { YouTube } from 'astro-embed'
 export async function getStaticPaths() {
   const coll = (await getCollection('meetups'))
   // .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.start.valueOf() - a.data.start.valueOf())
+  .sort((a, b) => new Date(b.data.start).valueOf() - new Date(a.data.start).valueOf())
 
   return coll.map((m) => ({
     params: { slug: m.slug },
@@ -43,7 +43,7 @@ const { Content } = await event.render();
       </div>
       <div class="animate flex items-center gap-1.5">
         <div class="font-base text-sm">
-          <FormattedDate date={event.data.start} /> {event.data.location ? `@ ${event.data.location}` : ''}
+          <FormattedDate date={new Date(event.data.start)} /> {event.data.location ? `@ ${event.data.location}` : ''}
         </div>
       </div>
     </div>

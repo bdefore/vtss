@@ -37,8 +37,8 @@ export const meetups = defineCollection({
   schema: z.object({
     id: z.string(),
     description: z.string().optional(),
-    start: z.coerce.date(),
-    end: z.coerce.date(),
+    start: z.string(),
+    end: z.string(),
     title: z.string(),
     location: z.string().optional(),
     youTubeId: z.string().optional(),
