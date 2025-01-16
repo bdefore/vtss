@@ -1,8 +1,7 @@
 ---
-import { formatInTimeZone } from 'date-fns-tz'
-
-
 import type { CollectionEntry } from 'astro:content'
+
+import FormattedDate from '@components/FormattedDate.astro'
 
 type Props = {
   entry:
@@ -22,8 +21,14 @@ const { entry } = Astro.props;
       {entry.data.title}
     </div>
     <div class="text-sm">
-      Date {entry.data.start}
-      <!-- {entry.data.start ? `${formatInTimeZone(entry.data.start, 'America/New York', 'MMM do')}:` : ''} {entry.data.description} -->
+      <!-- Date {entry.data.start} -->
+      {entry.data.start &&
+        <>
+          <FormattedDate date={entry.data.start} showClock={false} />
+          :
+        </>
+      }
+      {entry.data.description}
     </div>
   </div>
   <svg 

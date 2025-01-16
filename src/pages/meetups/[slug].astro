@@ -43,7 +43,12 @@ const { Content } = await event.render();
       </div>
       <div class="animate flex items-center gap-1.5">
         <div class="font-base text-sm">
-          <FormattedDate date={new Date(event.data.start)} /> {event.data.location ? `@ ${event.data.location}` : ''}
+          <FormattedDate date={event.data.start} endDate={event.data.end} />
+          {event.data.location &&
+            <div class="font-base text-sm">
+              {event.data.location}
+            </div>
+          }
         </div>
       </div>
     </div>
