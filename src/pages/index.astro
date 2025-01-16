@@ -12,13 +12,13 @@ import { compareAsc, sub } from 'date-fns'
 const now: Date = new Date()
 const threeDaysAgo: Date = sub(now, { days: 3 })
 
+const shows = (await getCollection('shows'))
 const meetups = (await getCollection('meetups'))
-  // .filter(event => !event.data.draft)
-  .sort((a, b) => a.data.start.valueOf() - b.data.start.valueOf())
 
 // fudge to three days ago to show recently past events too
-const relevantMeetups = meetups
+const relevantMeetups = [ ...meetups, ...shows]
   .filter(m => compareAsc(new Date(m.data.start), threeDaysAgo) > 0)
+  .sort((a, b) => a.data.start.valueOf() - b.data.start.valueOf())
   .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE)
 
 const SCOPES: string[] = ['https://www.googleapis.com/auth/calendar.readonly']

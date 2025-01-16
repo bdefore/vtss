@@ -2,8 +2,8 @@ import type { Site, Metadata, Socials } from '@types'
 
 export const SITE: Site = {
   NAME: 'VTSS',
-  NUM_POSTS_ON_HOMEPAGE: 3,
-  NUM_EVENTS_ON_HOMEPAGE: 3,
+  NUM_POSTS_ON_HOMEPAGE: 5,
+  NUM_EVENTS_ON_HOMEPAGE: 10,
 }
 
 export const HOME: Metadata = {
