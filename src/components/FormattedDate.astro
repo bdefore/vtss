@@ -1,16 +1,36 @@
 ---
-import { formatInTimeZone } from 'date-fns-tz'
-
 interface Props {
-  date: Date;
+  date: Date | string;
+  endDate?: Date | string;
 }
 
-const { date } = Astro.props;
+const { date, endDate } = Astro.props
+const dateObj = date instanceof Date ? date : new Date(date)
+const endDateObj = endDate instanceof Date ? endDate : !!endDate ? new Date(endDate) : undefined
+
+const lang = 'en-US'
+const timeZone = 'America/New_York'
+
+const dayFormatter = (useClock:boolean = true) =>
+  new Intl.DateTimeFormat(lang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: useClock ? 'numeric' : undefined,
+    minute: useClock ? 'numeric' : undefined,
+    timeZone  // Force UTC timezone
+  });
+
+const clockTimeFormatter = () =>
+  new Intl.DateTimeFormat(lang, {
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZone  // Force UTC timezone
+  });
+
 ---
 
-<time datetime={date.toISOString()}>
-  {date}
-  {
-    // formatInTimeZone(date, 'America/New York', 'MMM do')
-  }
+<time datetime={dateObj.toISOString()}>
+  {dayFormatter().format(dateObj)}
+  {!!endDateObj && `- ` + clockTimeFormatter().format(endDateObj)}
 </time>

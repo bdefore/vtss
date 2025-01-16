@@ -43,8 +43,9 @@ const { Content } = await event.render();
       </div>
       <div class="animate flex items-center gap-1.5">
         <div class="font-base text-sm">
-          Date String: {event.data.start}
-          <FormattedDate date={new Date(event.data.start)} />
+          Date String, Start: {event.data.start}
+          Date String, End: {event.data.end}
+          <FormattedDate date={event.data.start} endDate={event.data.end} />
         </div>
       </div>
     </div>
