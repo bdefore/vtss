@@ -118,6 +118,8 @@ const writeOutEvents = async (events: any, targetDir: string): Promise<void> => 
     const parentDir: string = `${targetDir}/${sanitized.id}`
     await fs.mkdir(parentDir, { recursive: true })
 
+    console.log(`Writing out event: ${frontMatterObj.title} @ ${frontMatterObj.start}`)
+
     await fs.writeFile(`${parentDir}/index${markdownExtension}`, yaml)
   }))
 }
