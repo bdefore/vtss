@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { format } from 'date-fns'
+
+import FormattedDate from '@components/FormattedDate.astro'
 
 type Props = {
   entry:
@@ -20,7 +21,14 @@ const { entry } = Astro.props;
       {entry.data.title}
     </div>
     <div class="text-sm">
-      {entry.data.start ? `${format(entry.data.start, 'MMM do')}:` : ''} {entry.data.description}
+      <!-- Date {entry.data.start} -->
+      {entry.data.start &&
+        <>
+          <FormattedDate date={entry.data.start} showClock={false} />
+          :
+        </>
+      }
+      {entry.data.description}
     </div>
   </div>
   <svg 
