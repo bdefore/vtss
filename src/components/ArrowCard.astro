@@ -1,6 +1,8 @@
 ---
+import { formatInTimeZone } from 'date-fns-tz'
+
+
 import type { CollectionEntry } from 'astro:content'
-import { format } from 'date-fns'
 
 type Props = {
   entry:
@@ -20,7 +22,8 @@ const { entry } = Astro.props;
       {entry.data.title}
     </div>
     <div class="text-sm">
-      {entry.data.start ? `${format(entry.data.start, 'MMM do')}:` : ''} {entry.data.description}
+      Date {entry.data.start}
+      <!-- {entry.data.start ? `${formatInTimeZone(entry.data.start, 'America/New York', 'MMM do')}:` : ''} {entry.data.description} -->
     </div>
   </div>
   <svg 
